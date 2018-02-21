@@ -25,7 +25,7 @@ SECRET_KEY = 'fhs8kn)ql@%o*22*8c*dicl(nv+ncy!#0l%!-=_zczq$iny3ob'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['185.143.173.37',]
 
 
 # Application definition
@@ -80,11 +80,10 @@ DATABASES = {
         'NAME': 'dbelectrobit',
         'USER': 'elect',
         'PASSWORD': 'electword',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

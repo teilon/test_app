@@ -14,9 +14,15 @@ RUN apt-get update -y && apt-get -y upgrade -y \
 COPY requirements.txt /data
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ADD . /data
+COPY . /data
 
-RUN ln -s /data/config/nginx.conf /etc/nginx/sites-enabled/
+RUN ln -s /data/conf/nginx.conf /etc/nginx/sites-enabled/
+RUN echo 'daemon off;' >> /etc/nginx/nginx.conf
 RUN nginx -t
 
+
 EXPOSE 80
+
+# CMD ['uwsgi', '--ini', 'conf/uwsgi.ini']
+# CMD service nginx start
+CMD ./start.sh
