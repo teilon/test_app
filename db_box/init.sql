@@ -1,0 +1,2 @@
+CREATE USER elect WITH SUPERUSER PASSWORD 'electword';
+CREATE DATABASE dbelectrobit OWNER elect;

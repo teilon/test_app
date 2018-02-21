@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    container_name: db-box
+    image: postgres:9.4
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  app:
+    container_name: app-box    
+    build: app_box/
+    command: uwsgi --ini config/uwsgi.ini
+    networks:
+      - backend
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+
+networks:
+  backend:
+
+volumes:
+  mongodir:
+  searchdir:
