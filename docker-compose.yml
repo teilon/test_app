@@ -1,12 +1,16 @@
-version: '2'
+version: '3'
 
 services:
   db:
     container_name: db-box
     image: postgres:9.4
+    environment:
+      - POSTGRES_USER:elect
+      - POSTGRES_PASSWORD:'electword'
+      - POSTGRES_DB:'dbelectrobit'
     volumes:
-      - ./db_box/scripts:/docker-entrypoint-initdb.d
       - ./postgres-data:/var/lib/postgresql/data
+      - ./db_box/scripts:/docker-entrypoint-initdb.d
     ports:
       - '5432:5432'
     networks:
@@ -15,6 +19,8 @@ services:
   app:
     container_name: app-box    
     build: app_box/
+    environment: 
+      - DATABASE_URL=postgres://elect:electword@db/dbelectrobit
     networks:
       - backend
     depends_on:

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'fhs8kn)ql@%o*22*8c*dicl(nv+ncy!#0l%!-=_zczq$iny3ob'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['185.143.173.37',]
 
@@ -74,15 +74,21 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbelectrobit',
-        'USER': 'elect',
-        'PASSWORD': 'electword',
-        'HOST': 'db',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        env='DATABASE_URL',
+        default='postgres://localhost/demo'
+    )
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'dbelectrobit',
+#        'USER': 'elect',
+#        'PASSWORD': 'electword',
+#        'HOST': 'db',
+#        'PORT': '5432',
+#    }
 }
 
 # Password validation
